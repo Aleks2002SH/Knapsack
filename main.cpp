@@ -11,6 +11,6 @@ int main()
         item a = { val,wt };
         items.push_back(a);
     }
-
-
+    vector<int> used(n);
+    cout << knapsack(items,K, n,used) << endl;
 }
