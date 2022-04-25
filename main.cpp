@@ -13,4 +13,6 @@ int main()
     }
     vector<int> used(n);
     cout << knapsack(items,K, n,used) << endl;
+    vector<int> used_initial_order = initial_elemets_order(used, n,items);
+    show_1dmatrix(used_initial_order);
 }

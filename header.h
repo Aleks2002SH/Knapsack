@@ -1,6 +1,8 @@
 #include<iostream>
 #include<vector>
 #include<queue>
+#include<iterator>
+#include<algorithm>
 using namespace std;
 struct item {
 	int val;
@@ -73,4 +75,29 @@ double knapsack(vector<item> items,int &K,int &n,vector<int> &used) {
 	}
 	return sum_value;
 }
-
+template<class T>
+void show_1dmatrix(vector<T>& V) {
+	int N = V.size();
+	for (int i = 0; i < N; i++) {
+		cout << V[i] << " " ;
+	}
+	cout << endl;
+}
+template <class T>
+vector<T> sorted_vector(vector<T> vec) {
+	sort(vec.begin(), vec.end(), comparison);
+	return vec;
+}
+vector<int> initial_elemets_order(vector<int> used, int n, vector<item>& items) {
+	vector<item> sorted_items=sorted_vector<item>(items);
+	vector<int> used_correct_order(n);
+	for (int i = 0; i < n; i++) {
+		if (used[i] == 1) {
+			item elem = sorted_items[i];
+			vector<item>::iterator it = find(items.begin(), items.end(), elem);
+			int dist = distance(items.begin(), it);
+			used_correct_order[dist] = 1;
+		}
+	}
+	return used_correct_order;
+}
