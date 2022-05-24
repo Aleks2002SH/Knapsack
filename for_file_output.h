@@ -1,9 +1,10 @@
-#include "header.h"
+#include "Knapsackheader.h"
 #include<filesystem>
 #include<fstream>
 namespace  fs = std::filesystem;
+using namespace std;
 
-
+//function to get list of files in required directory
 vector<string> filesindir(const fs::path& dir) {
 	vector<string> files;
 	for (auto& p : fs::recursive_directory_iterator(dir)) {
@@ -13,11 +14,8 @@ vector<string> filesindir(const fs::path& dir) {
 	}
 	return files;
 }
-void fill_result(int &knapsack_value, ofstream& out, string& file_name) {
+//function to fill results
+void fill_result(int& wt, ofstream& out,string& file_name) {
 	out << file_name << " ";
-	out << knapsack_value << '\n';
-	/*for (int i = 0; i < used_items.size(); i++) {
-		out << used_items[i] << " ";
-	}
-	out << '\n';*/
+	out << wt << '\n';
 }
